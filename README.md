@@ -111,9 +111,10 @@ Finally, execute prod task `npm run start:prod`
 * enable/disable SSL mode in production environment change the `secure` option in `config/env/production.js`
 
 
-## Copyright and License
+## License
 
-Code and documentation copyright 2016-2017 the [BC Developers' Exchange](https://bcdevexchange.org). Code released under the [Apache License, Version 2.0](https://github.com/BCDevExchange/devex/blob/master/LICENSE).
+* **[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0)**
+* Copyright &copy; 2018 BC Developers' Exchange
 
 
 
