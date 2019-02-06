@@ -38,7 +38,9 @@
           <h4>Company Info</h4>
         </div>
         <div class="hover-area" ng-if="vm.isOrgAdmin() || vm.isAdmin()" uib-tooltip="Click to edit" tooltip-placement="top-left" ng-click="vm.editOrgContact()">
+          <span class="text-muted">Legal Address:</span><br>
           <span ng-if="vm.org.address" class="font-weight-bold">{{vm.org.address}}</span><span ng-if="!vm.org.address" class="missing-info">Add address</span><br>
+          <span ng-if="vm.org.address2" class="font-weight-bold">{{vm.org.address2}}</span><br>
           <span ng-if="vm.org.city" class="font-weight-bold">{{vm.org.city}}</span><span ng-if="!vm.org.city" class="missing-info">Add city</span> 
           <span ng-if="vm.org.province" class="font-weight-bold">{{vm.org.province}}</span><span ng-if="!vm.org.province" class="missing-info">XX</span> 
           &nbsp;
@@ -46,7 +48,7 @@
           <br><br>
         </div>
         <div class="hover-area" ng-if="vm.isOrgAdmin() || vm.isAdmin()" uib-tooltip="Click to edit" tooltip-placement="top-left" ng-click="vm.editOrgContact()">
-          <span class="text-muted">Business Registration No.:</span>
+          <span class="text-muted">Business Registration No.:</span><br>
           <span ng-if="vm.org.businessNumber" class="font-weight-bold">{{vm.org.businessNumber}}</span><span ng-if="!vm.org.businessNumber" class="missing-info">Add</span>
           <br><br>
         </div>
