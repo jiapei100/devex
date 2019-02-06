@@ -2,6 +2,10 @@
 //  padding-top: 61px !important; // To accommodate fixed navbar
 //}
 
+html {
+	font-size: 0.875rem;
+}
+
 main {
   min-height: 80vh !important; // Prevent footer from appearing in the middle of the view with whitespace below
 }
