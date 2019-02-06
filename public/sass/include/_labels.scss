@@ -158,6 +158,7 @@
 .label-cap-default {
   color: $gray-dark;
   background: transparent;
+  font-size: 1rem;
   letter-spacing: -0.02em;
 }
 
@@ -268,4 +269,12 @@
 
 .label-pending {
   background: $theme-yellow;
+}
+.label-swu-qualified {
+  display: inline-block;
+  background: $brand-yellow;
+  color: $gray-base;
+  font-size: 1rem;
+  padding: 2px 9px 3px;
+  border-radius: 14px;
 }
