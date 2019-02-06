@@ -143,7 +143,6 @@
         <div class="py-2">
           <!--Andrew: Can you make this populate with only the capabilities that ARE possessed?-->
           <label ng-repeat="capability in vm.capabilities" class="label label-cap-default">
-            <span ng-if="!vm.orgHasCapability(capability)"></span>
             <span ng-if="vm.orgHasCapability(capability)"><i class="far fa-lg fa-check-circle success"></i></span>
             {{capability.name}}
           </label>
@@ -153,10 +152,7 @@
           To qualify to apply on <span>Sprint With Us</span> opportunities, you need to add members with the following capabilities:
           <div class="mt-2">
             <!--Andrew: Can you make this populate with only the capabilities that are NOT possessed?-->
-            <label ng-repeat="capability in vm.capabilities" class="label label-cap-default">
-            <span ng-if="!vm.orgHasCapability(capability)"></span>
-            {{capability.name}}
-            </label>
+            <label ng-repeat="capability in vm.capabilities" class="label label-cap-default">{{capability.name}}</label>
           </div>
         </div>        
 
