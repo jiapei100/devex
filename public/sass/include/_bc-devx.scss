@@ -436,7 +436,7 @@ form-title {
   box-shadow: none;
   @include transition-all(0.15s);
   text-decoration: none;
-  margin-left: 2px;
+  margin-right: 2px;
 }
 
 .btn-sm {
@@ -665,6 +665,8 @@ form-title {
   color: $gray;
   background: transparent;
   border-color: none;
+  padding-right: 0;
+  padding-left: 0;
   &:hover,
   &:active:hover {
     color: $gray-darker;
