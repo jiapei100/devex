@@ -11,7 +11,7 @@
 <section>
   <div class="container">
 
-    <div class="row mb-3" ng-if="(vm.isOrgMember() || vm.isAdmin()) && vm.isOrgCapable() && vm.org.isAcceptedTerms">
+    <div class="row mb-3" ng-if="(vm.isOrgMember() || vm.isAdmin()) && vm.orgHasMetRFQ">
       <div class="col">
         <label class="mb-1 label label-swu-qualified" uib-tooltip="Your company is qualified to apply on Sprint With Us opportunities!">
           <i class="fas fa-certificate"></i> 
@@ -22,41 +22,56 @@
 
     <div class="row">
       <div class="col-12 col-md-6 mb-5">
-        <div class="d-flex align-items-center">
-          <edit-org-image org="vm.org"></edit-org-image>
-          <div>
-            <h4 class="hover-area m-0" ng-if="vm.isOrgAdmin() || vm.isAdmin()" uib-tooltip="Click to edit" tooltip-placement="top-left" ng-click="vm.editOrgInfo()">{{ vm.org.name }}</h4>
-            <div class="hover-area text-truncate" ng-if="vm.org.website && (vm.isOrgAdmin() || vm.isAdmin())" uib-tooltip="Click to edit" tooltip-placement="top-left" ng-click="vm.editOrgInfo()">{{vm.org.website}}</div>
-            <div class="missing-info" ng-if="!vm.org.website && (vm.isOrgAdmin() || vm.isAdmin())" ng-click="vm.editOrgInfo()">Add website</div>
-          </div>
+        <div class="d-flex align-items-start">
+            <div class="d-flex align-items-center">
+              <edit-org-image org="vm.org"></edit-org-image>
+              <div>
+                <h4>{{ vm.org.name }}</h4>
+                <div class="text-truncate" ng-if="vm.org.website">{{vm.org.website}}</div>
+                <div class="missing-info" ng-if="!vm.org.website && (vm.isOrgAdmin() || vm.isAdmin())" ng-click="vm.editOrgInfo()">Add website</div>
+              </div>
+            </div>
+            <a class="subhead ml-5 mt-2" ng-if="vm.isOrgAdmin() || vm.isAdmin()" ng-click="vm.editOrgInfo()">Edit</a>
         </div>
       </div>
 
-      <!-- Business info -->
+      <!-- Company Info -->
       <div ng-if="vm.isOrgMember() || vm.isAdmin()" class="col-12 col-md-6">
-        <div class="subhead mt-2">
+        <div class="subhead mt-2 d-flex align-items-center justify-content-between">
           <h4>Company Info</h4>
+          <a class="subhead" ng-if="vm.isOrgAdmin() || vm.isAdmin()" ng-click="vm.editOrgContact()">Edit</a>
         </div>
-        <div class="hover-area" ng-if="vm.isOrgAdmin() || vm.isAdmin()" uib-tooltip="Click to edit" tooltip-placement="top-left" ng-click="vm.editOrgContact()">
-          <span class="text-muted">Legal Address:</span><br>
-          <span ng-if="vm.org.address" class="font-weight-bold">{{vm.org.address}}</span><span ng-if="!vm.org.address" class="missing-info">Add address</span><br>
-          <span ng-if="vm.org.address2" class="font-weight-bold">{{vm.org.address2}}</span><br>
-          <span ng-if="vm.org.city" class="font-weight-bold">{{vm.org.city}}</span><span ng-if="!vm.org.city" class="missing-info">Add city</span> 
-          <span ng-if="vm.org.province" class="font-weight-bold">{{vm.org.province}}</span><span ng-if="!vm.org.province" class="missing-info">XX</span> 
-          &nbsp;
-          <span ng-if="vm.org.postalcode">{{vm.org.postalcode}}</span><span ng-if="!vm.org.postalcode" class="missing-info">Add postal</span>
-          <br><br>
+        <!-- Address -->
+        <div class="mb-3">
+          <div class="text-muted font-weight-bold">Legal Address</div>
+          <div ng-if="vm.org.address">{{vm.org.address}}</div>
+          <div ng-if="!vm.org.address" class="missing-info">Add address</div>
+          <div ng-if="vm.org.address2">{{vm.org.address2}}</div>
+          <div>
+            <span ng-if="vm.org.city">{{vm.org.city}}</span>
+            <span ng-if="!vm.org.city" class="missing-info">Add city</span> 
+            &nbsp;
+            <span ng-if="vm.org.province">{{vm.org.province}}</span>
+            <span ng-if="!vm.org.province" class="missing-info">XX</span>
+          </div> 
+          <div ng-if="vm.org.postalcode">{{vm.org.postalcode}}</div>
+          <div ng-if="!vm.org.postalcode" class="missing-info">Add postal</div>
         </div>
-        <div class="hover-area" ng-if="vm.isOrgAdmin() || vm.isAdmin()" uib-tooltip="Click to edit" tooltip-placement="top-left" ng-click="vm.editOrgContact()">
-          <span class="text-muted">Business Registration No.:</span><br>
-          <span ng-if="vm.org.businessNumber" class="font-weight-bold">{{vm.org.businessNumber}}</span><span ng-if="!vm.org.businessNumber" class="missing-info">Add</span>
-          <br><br>
+        <!-- Business Registration -->
+        <div class="mb-3">
+          <div class="text-muted font-weight-bold">Business Registration</div>
+          <div ng-if="vm.org.businessNumber">{{vm.org.businessNumber}}</div>
+          <div ng-if="!vm.org.businessNumber" class="missing-info">Add</div>
         </div>
-        <div class="hover-area" ng-if="vm.isOrgAdmin() || vm.isAdmin()" uib-tooltip="Click to edit" tooltip-placement="top-left" ng-click="vm.editOrgContact()">
-          <span class="text-muted">Company Contact:</span><br>
-          <span ng-if="vm.org.contactName" class="font-weight-bold">{{vm.org.contactName}}</span><span ng-if="!vm.org.contactName" class="missing-info">Add contact person</span><br>
-          <span ng-if="vm.org.contactPhone" class="font-weight-bold">{{vm.org.contactPhone}}</span><span ng-if="!vm.org.contactPhone" class="missing-info">Add phone</span><br>
-          <span ng-if="vm.org.contactEmail" class="font-weight-bold">{{vm.org.contactEmail}}</span><span ng-if="!vm.org.contactEmail" class="missing-info">Add email</span>
+        <!-- Company Contact -->
+        <div class="mb-3">
+          <div class="text-muted font-weight-bold">Company Contact</div>
+          <div ng-if="vm.org.contactName">{{vm.org.contactName}}</div>
+          <div ng-if="!vm.org.contactName" class="missing-info">Add contact person</div>
+          <div ng-if="vm.org.contactPhone">{{vm.org.contactPhone}}</div>
+          <div ng-if="!vm.org.contactPhone" class="missing-info">Add phone</div>
+          <div ng-if="vm.org.contactEmail">{{vm.org.contactEmail}}</div>
+          <div ng-if="!vm.org.contactEmail" class="missing-info">Add email</div>
         </div>
       </div>
     </div>
@@ -66,9 +81,6 @@
 <!-- Members section; should only appear if user is logged in and is a company admin -->    
 <section ng-if="vm.isOrgAdmin() || vm.isAdmin()">
   <div class="container">
-    <div ng-if="vm.org.members.length < 2" class="row d-flex justify-content-between">
-      <span class="alert alert-warning">You need at least 2 team members to apply on <span class="font-italic">Sprint With Us</span> opportunities.</span>
-    </div>
     <div class="row d-flex justify-content-between">
       <!-- Member requests -->
       <div class="col-md-12 col-lg-5">
@@ -119,12 +131,10 @@
             <name>{{member.displayName}}</name>
           </div>
         </div>
-        <!--Andrew: Can you make this alert display if there is only one member-->
-        <div ng-if="" class="alert alert-warning">
-          To qualify to apply on <span>Sprint With Us</span> opportunities, you must have at least two members in your company.
-        </div> 
-      </div>
-      <!-- END // Members list -->
+        <div ng-if="vm.org.members.length < 2" class="alert alert-warning">
+          To qualify to apply on <span class="font-italic">Sprint With Us</span> opportunities, you must have at least two members in your company.
+        </div>
+      </div><!-- END // Members list -->
     </div>
   </div><!--END // Container -->
 </section><!--END // Section -->
@@ -143,13 +153,12 @@
         <div class="py-2">
           <!--Andrew: Can you make this populate with only the capabilities that ARE possessed?-->
           <label ng-repeat="capability in vm.capabilities" class="label label-cap-default">
-            <span ng-if="vm.orgHasCapability(capability)"><i class="far fa-lg fa-check-circle success"></i></span>
-            {{capability.name}}
+            <span ng-if="vm.orgHasCapability(capability)"><i class="far fa-lg fa-check-circle success"></i> {{capability.name}}</span>
           </label>
         </div>
 
         <div ng-if="!vm.isOrgCapable()" class="alert alert-warning">
-          To qualify to apply on <span>Sprint With Us</span> opportunities, you need to add members with the following capabilities:
+          To qualify to apply on <span class="font-italic">Sprint With Us</span> opportunities, you need to add members with the following capabilities:
           <div class="mt-2">
             <!--Andrew: Can you make this populate with only the capabilities that are NOT possessed?-->
             <label ng-repeat="capability in vm.capabilities" class="label label-cap-default">{{capability.name}}</label>
