@@ -21,8 +21,19 @@ div.subhead {
 	border-bottom: 1px solid #e1e4e8;
 	margin-bottom: 0.5rem;
 	margin-top: 2rem;
- }
-
+}
+a.subhead {
+  color: $theme-primary;
+  margin-bottom: 0.5rem !important; // Match the margin of the subhead
+  margin-right: 0.5rem;
+  cursor: pointer;
+}
+a:not([href]):not([tabindex]) {
+  color: $theme-primary !important; // Override default inherit color
+}
+a:not([href]):not([tabindex]):hover {
+  color: $theme-primary !important; // Override default inherit color
+}
 .missing-info {
     font-weight: lighter;
     font-style: italic;
